@@ -1,0 +1,266 @@
+# thêm id cho order,like,rate
+
+# tạo database app_food
+CREATE DATABASE app_food;
+USE app_food;
+
+# tables users
+CREATE TABLE users(
+	user_id INT PRIMARY KEY AUTO_INCREMENT,
+	full_name VARCHAR(255),
+	email VARCHAR(255),
+	password VARCHAR(255)
+);
+
+# tables restaurant
+CREATE TABLE restaurant(
+	res_id INT PRIMARY KEY AUTO_INCREMENT,
+	res_name VARCHAR(255),
+	Image VARCHAR(255),
+	desciption VARCHAR(255)
+);
+
+# tables food_type
+CREATE TABLE food_type(
+	type_id INT PRIMARY KEY AUTO_INCREMENT,
+	type_name VARCHAR(255)
+);
+
+# tables rate_res
+CREATE TABLE rate_res(
+	user_id INT,
+	res_id INT,
+	amount INT,
+	date_rate DATETIME,
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (res_id) REFERENCES restaurant(res_id)
+);
+
+# tables like_res
+CREATE TABLE like_res(
+	user_id INT,
+	res_id INT,
+	date_like DATETIME,
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (res_id) REFERENCES restaurant(res_id)
+);
+
+# tables food 
+CREATE TABLE food(
+	food_id INT PRIMARY KEY AUTO_INCREMENT,
+	food_name VARCHAR(255),
+	image VARCHAR(255),
+	price FLOAT,
+	desciption VARCHAR(255),
+	type_id INT,
+	FOREIGN KEY (type_id) REFERENCES food_type(type_id)
+);
+
+# tables sub_food
+CREATE TABLE sub_food(
+	sub_id INT PRIMARY KEY AUTO_INCREMENT,
+	sub_name VARCHAR(255),
+	sub_price FLOAT,
+	food_id INT,
+	FOREIGN KEY (food_id) REFERENCES food(food_id)
+);
+
+# tables orders
+CREATE TABLE orders(
+	user_id INT,
+	food_id INT,
+	amount INT,
+	code VARCHAR(255),
+	arr_sub_id VARCHAR(255),
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (food_id) REFERENCES food(food_id)
+);
+
+
+# dữ liệu cho tables users
+INSERT INTO users (full_name, email, password) VALUES
+('John Doe', 'johndoe@example.com', 'password123'),
+('Jane Smith', 'janesmith@example.com', 'password456'),
+('Peter Jones', 'peterjones@example.com', 'password789'),
+('Mary Williams', 'marywilliams@example.com', 'password012'),
+('Mary Jones', 'marywilliams@example.com', 'password012'),
+('Brown Jones', 'marywilliams@example.com', 'password012'),
+('David Brown', 'davidbrown@example.com', 'password345');
+
+# thêm dữ liệu cho tables users 
+INSERT INTO users (full_name, email, password) VALUES
+('David John', 'ass@example.com', 'password345');
+
+# thêm dữ liệu cho tables users 
+INSERT INTO users (full_name, email, password) VALUES
+('David 123', 'ass@example.com', 'password345');
+
+
+
+# dữ liệu cho tables restaurent
+INSERT INTO restaurant (res_name, Image, desciption) VALUES
+('Sushi Q', 'sushi-q.jpg', 'Authentic Japanese cuisine'),
+('Noodles & Co.', 'noodles-co.jpg', 'Asian fusion noodle dishes'),
+('Pizza Hut', 'pizza-hut.jpg', 'Classic American pizza'),
+('McDonald\'s', 'mcdonalds.jpg', 'Fast food burgers, fries, and shakes'),
+('Starbucks', 'starbucks.jpg', 'Coffeehouse chain with espresso drinks, pastries, and sandwiches');
+
+# dữ liệu cho tables food_type
+INSERT INTO food_type (type_name) VALUES
+('Main Dishes'),
+('Appetizers'),
+('Desserts'),
+('Beverages'),
+('Sides');
+
+# dữ liệu cho tables rate_res
+INSERT INTO rate_res (user_id, res_id, amount, date_rate) VALUES
+(1, 1, 5, '2023-11-05 10:00:00'),
+(1, 3, 4, '2023-10-25 15:30:00'),
+(2, 2, 5, '2023-10-12 12:45:00'),
+(2, 4, 3, '2023-09-18 18:20:00'),
+(3, 5, 4, '2023-08-24 21:10:00');
+
+# dữ liệu cho tables like_res
+INSERT INTO like_res (user_id, res_id, date_like) VALUES
+(1, 2, '2023-11-05 10:20:00'),
+(2, 5, '2023-11-04 17:50:00'),
+(4, 1, '2023-11-02 10:10:00'),
+(3, 4, '2023-11-03 13:40:00'),
+(6, 1, '2023-11-01 09:30:00'),
+(5, 3, '2023-10-30 16:10:00'),
+(7, 2, '2023-10-29 12:45:00'),
+(1, 4, '2023-10-28 11:15:00'),
+(3, 5, '2023-10-27 09:30:00'),
+(2, 1, '2023-10-26 18:25:00');
+
+# dữ liệu cho tables like_res
+INSERT INTO like_res (user_id, res_id, date_like) VALUES
+(9, 1, '2023-10-26 18:25:00');
+
+
+# dữ liệu cho tables food
+INSERT INTO food (food_name, image, price, desciption, type_id) VALUES
+('Sushi Platter', 'sushi_platter.jpg', 25.99, 'A delightful assortment of sushi rolls, sashimi, and nigiri.', 1),
+('Noodles with Chicken', 'noodles_with_chicken.jpg', 12.99, 'A savory dish of tender chicken stir-fried with noodles and vegetables.', 1),
+('Margherita Pizza', 'margherita_pizza.jpg', 14.99, 'A classic Neapolitan pizza with a simple yet delicious combination of tomato sauce, mozzarella cheese, and fresh basil.', 1),
+('Cheeseburger', 'cheeseburger.jpg', 9.99, 'A juicy beef patty topped with melted cheddar cheese, lettuce, tomato, and onion, served on a toasted bun.', 1),
+('Chicken Salad Sandwich', 'chicken_salad_sandwich.jpg', 8.99, 'A creamy and flavorful sandwich made with shredded rotisserie chicken, mayonnaise, celery, and grapes.', 1),
+('Tempura Udon', 'tempura_udon.jpg', 16.99, 'A hearty dish of udon noodles topped with a medley of tempura-fried vegetables.', 1),
+('Pad Thai', 'pad_thai.jpg', 14.99, 'A stir-fried noodle dish with tamarind sauce, peanuts, bean sprouts, and your choice of protein.', 1),
+('Creamy Tomato Soup', 'creamy_tomato_soup.jpg', 5.99, 'A warm and comforting soup made with fresh tomatoes, cream, and a touch of herbs.', 2),
+('Caesar Salad', 'caesar_salad.jpg', 8.99, 'A classic salad made with romaine lettuce, croutons, Parmesan cheese, and a creamy Caesar dressing.', 2),
+('French Fries', 'french_fries.jpg', 3.99, 'A crispy and golden side dish of deep-fried potatoes.', 2),
+('Chocolate Chip Cookies', 'chocolate_chip_cookies.jpg', 2.99, 'Freshly baked cookies with a gooey center and a sprinkle of chocolate chips.', 3),
+('Vanilla Ice Cream', 'vanilla_ice_cream.jpg', 3.99, 'A rich and creamy scoop of vanilla ice cream.', 3),
+('Mango Smoothie', 'mango_smoothie.jpg', 5.99, 'A refreshing and revitalizing smoothie made with fresh mangoes, yogurt, and a touch of honey.', 4),
+('Iced Coffee', 'iced_coffee.jpg', 4.99, 'A cool and caffeinated beverage made with brewed coffee, milk, and ice.', 4),
+('Hot Chocolate', 'hot_chocolate.jpg', 3.99, 'A warm and indulgent drink made with melted chocolate, milk, and whipped cream.', 4);
+
+# dữ liệu cho sub_food
+INSERT INTO sub_food (sub_name, sub_price, food_id) VALUES
+('Salmon Nigiri', 2.50, 1),
+('Californian Roll', 2.00, 1),
+('Vegetable Tempura', 3.50, 6),
+('Chicken Tempura', 4.00, 6),
+('Shrimp Tempura', 4.50, 6),
+('Pad Thai with Chicken', 15.99, 7),
+('Pad Thai with Tofu', 14.99, 7),
+('Pad Thai with Shrimp', 16.99, 7),
+('House Salad', 5.99, 2),
+('Caesar Salad with Grilled Chicken', 12.99, 2),
+('Chocolate Chip Cookie', 1.50, 12),
+('Double Chocolate Chip Cookie', 2.00, 12),
+('Vanilla Ice Cream Cone', 2.99, 13),
+('Vanilla Ice Cream Cup', 3.99, 13),
+('Iced Coffee with Milk', 4.99, 14),
+('Iced Coffee with Black Coffee', 4.50, 14),
+('Hot Chocolate with Whipped Cream', 4.25, 14),
+('Hot Chocolate with Marshmallows', 4.50, 14);
+
+# dữ liệu cho tables orders
+INSERT INTO orders (user_id, food_id, amount, code, arr_sub_id) VALUES
+(1, 3, 1, 'ORDER123', '10,11'),
+(2, 5, 2, 'ORDER456', '12,13'),
+(3, 1, 1, 'ORDER789', '1,2'),
+(4, 6, 1, 'ORDER012', '5,6'),
+(5, 2, 3, 'ORDER345', '3,4,9'),
+(6, 4, 2, 'ORDER678', '7,8'),
+(2, 5, 2, 'ORDER901', '10,11'),
+(1, 1, 2, 'ORDER234', '1,2'),
+(2, 2, 1, 'ORDER567', '3,4'),
+(3, 4, 3, 'ORDER890', '5,6,7');
+
+
+# 5 người likes nhà hàng nhiều nhất
+SELECT
+	like_res.user_id,
+	users.full_name,
+	COUNT(DISTINCT res_id) AS total_like
+FROM like_res
+LEFT JOIN users
+ON like_res.user_id = users.user_id
+GROUP BY user_id
+ORDER BY total_like DESC
+LIMIT 5;
+
+# 2 nhà hàng có lượt likes nhiều nhất
+SELECT 
+	like_res.res_id,
+	restaurant.res_name,
+	COUNT(DISTINCT user_id) AS total_like
+FROM like_res
+LEFT JOIN restaurant
+ON like_res.res_id = restaurant.res_id
+GROUP BY res_id
+ORDER BY total_like DESC
+LIMIT 2;
+
+# người đặt hàng nhiều nhất
+SELECT 
+	users.user_id,
+	full_name, 
+	COUNT(*) AS total_spent  
+FROM users
+LEFT JOIN orders
+ON users.user_id = orders.user_id
+GROUP BY users.user_id
+ORDER BY total_spent DESC
+LIMIT 1;
+
+
+# người dùng không hoạt động trong hệ thống
+SELECT 
+	users.user_id,
+	users.full_name,
+	users.email
+FROM users
+LEFT JOIN orders
+ON users.user_id = orders.user_id
+LEFT JOIN rate_res
+ON users.user_id = rate_res.user_id
+LEFT JOIN like_res
+ON users.user_id = like_res.user_id
+WHERE orders.user_id IS NULL && like_res.user_id IS NULL && rate_res.user_id IS NULL;
+
+SELECT * FROM users WHERE user_id >= 1;
+
+
+# thêm cột like_id cho bảng like_res
+ALTER TABLE like_res ADD COLUMN like_id INT AUTO_INCREMENT PRIMARY KEY;
+# thêm cột booleans để hiển thị likes hoặc unlike
+ALTER TABLE like_res ADD set_like BOOLEAN NOT NULL;
+
+
+
+
+# thêm cột rate_res_id cho bảng rate_res
+ALTER TABLE rate_res ADD COLUMN rate_id INT AUTO_INCREMENT PRIMARY KEY;
+
+# thêm cột order_id cho bảng orders
+ALTER TABLE orders ADD COLUMN order_id INT AUTO_INCREMENT PRIMARY KEY;
+
+
+
+
+
