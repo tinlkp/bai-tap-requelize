@@ -51,12 +51,3 @@ export const orderFood = async (req, res) => {
   }
 };
 
-// lấy danh sách đặt món
-export const orderList = async (req, res) => {
-  try {
-    let data = await model.orders.findAll();
-    responseData(res, "Success", data, 200);
-  } catch (exception) {
-    responseData(res, "Error", exception.message, 500);
-  }
-};

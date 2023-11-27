@@ -17,4 +17,17 @@ export const getUser = async (req, res) => {
   }
 };
 
-
+// lấy danh sách đặt món
+export const userOrderList = async (req, res) => {
+  try {
+    let { user_id } = req.headers;
+    let data = await model.orders.findAll({
+      where: {
+        user_id,
+      },
+    });
+    responseData(res, "Success", data, 200);
+  } catch (exception) {
+    responseData(res, "Error", exception.message, 500);
+  }
+};

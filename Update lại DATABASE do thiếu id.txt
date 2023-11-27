@@ -1,4 +1,5 @@
-# thêm id cho order,like,rate
+# cập nhật thêm id cho like_res,rate_res,order
+
 
 # tạo database app_food
 CREATE DATABASE app_food;

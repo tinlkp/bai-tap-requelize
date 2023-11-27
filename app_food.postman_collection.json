@@ -1,0 +1,355 @@
+{
+	"info": {
+		"_postman_id": "14319c24-e269-4025-a0ef-b86b54f8de7e",
+		"name": "app_food",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28548081"
+	},
+	"item": [
+		{
+			"name": "danh sách nhà hàng",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/res/get-res",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"res",
+						"get-res"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chi tiết nhà hàng",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/res/get-res-id/1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"res",
+						"get-res-id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "danh sách like theo từng nhà hàng",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"res_id\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/res/get-res-like/3",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"res",
+						"get-res-like",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "danh sách đánh giá theo từng nhà hàng",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/res/get-res-rate/1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"res",
+						"get-res-rate",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like nhà hàng",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"res_id\":3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/res/post-like",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"res",
+						"post-like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dánh giá nhà hàng",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"res_id\":5,\r\n    \"amount\":4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/res/post-rate",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"res",
+						"post-rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "đang kí tài khoản",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"full_name\": \"tin1\",\r\n    \"email\": \"zbc1@gmail.com\",\r\n    \"password\": \"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/auth/signup",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "đăng nhập tài khoản",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"zbc1@gmail.com\",\r\n    \"password\":\"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/auth/login",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "đặt món",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"food_id\":4,\r\n    \"amount\":20,\r\n    \"code\":\"code123\",\r\n    \"arr_sub_id\":\"arr123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/food/order-food/",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"food",
+						"order-food",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "danh sách các món đã đặt theo user_id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{domain}}/user/user-order",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"user-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "đanh sách người dùng",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/user/get-user",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"get-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "danh sách các món ăn",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/food/food-list",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"food",
+						"food-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chi tiết món ăn",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/food/food-detail/15",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"food",
+						"food-detail",
+						"15"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
